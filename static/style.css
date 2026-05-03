@@ -1836,7 +1836,130 @@ display: none;
 }
 
 
+.github-repo-badge {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
 
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 12px;
+
+  color: #24292f;
+  text-decoration: none;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans KR",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  background: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 10px;
+  box-shadow:
+    0 8px 24px rgba(140, 149, 159, 0.2),
+    0 1px 0 rgba(27, 31, 36, 0.04);
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.github-repo-badge:hover {
+  background: #f6f8fa;
+  border-color: #8c959f;
+  box-shadow:
+    0 12px 28px rgba(140, 149, 159, 0.26),
+    0 1px 0 rgba(27, 31, 36, 0.06);
+}
+
+.github-repo-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+
+  width: 34px;
+  height: 34px;
+
+  color: #24292f;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 50%;
+}
+
+.github-repo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
+}
+
+.github-repo-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #57606a;
+}
+
+.github-repo-text strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #24292f;
+}
+
+.github-repo-arrow {
+  margin-left: 2px;
+  font-size: 14px;
+  color: #57606a;
+  transition: transform 0.15s ease;
+}
+
+.github-repo-badge:hover .github-repo-arrow {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 640px) {
+  .github-repo-badge {
+    right: 14px;
+    bottom: 14px;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    gap: 0;
+  }
+
+  .github-repo-icon {
+    width: auto;
+    height: auto;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  .github-repo-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .github-repo-text,
+  .github-repo-arrow {
+    display: none;
+  }
+}
 
 
 
