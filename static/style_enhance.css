@@ -1,0 +1,491 @@
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+  --gold:        #c9a96e;
+  --gold-dim:    rgba(201, 169, 110, 0.18);
+  --gold-light:  #e8d5a8;
+  --ink:         #2c2416;
+  --paper:       #f7f5f2;
+}
+
+
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#page-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-name-svg {
+  width: clamp(260px, 50vw, 380px);
+  height: auto;
+  overflow: visible;
+}
+
+.loader-stroke {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: loaderDraw 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.3s;
+}
+
+.loader-stroke-fill {
+  fill: var(--ink);
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: loaderDraw 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.3s,
+             loaderFill 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards 2.1s;
+  opacity: 0;
+}
+
+@keyframes loaderDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes loaderFill {
+  to {
+    opacity: 1;
+  }
+}
+
+.loader-sub {
+  margin-top: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  color: rgba(44, 36, 22, 0.45);
+  font-family: 'EB Garamond', 'KoPubBatang', serif;
+  opacity: 0;
+  animation: loaderSubFade 0.8s ease forwards 1.4s;
+}
+
+@keyframes loaderSubFade {
+  to { opacity: 1; }
+}
+
+.loader-bar-wrap {
+  margin-top: 28px;
+  width: clamp(140px, 22vw, 200px);
+  height: 2px;
+  background: rgba(44,36,22,0.15);
+  overflow: hidden;
+  border-radius: 99px;
+}
+
+.loader-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  animation: loaderBarFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.1s;
+  border-radius: 99px;
+  width: 0;
+  box-shadow: 0 0 12px rgba(201, 169, 110, 0.55);
+}
+
+@keyframes loaderBarFill {
+  to { width: 100%; }
+}
+
+
+.page {
+  opacity: 0;
+  animation: pageReveal 0.6s ease forwards 2.8s;
+}
+
+@keyframes pageReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='0.055'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  opacity: 1;
+  mix-blend-mode: multiply;
+}
+
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+  z-index: 100000;
+  transition: width 0.08s linear;
+  transform-origin: left center;
+}
+
+
+.cursor-dot {
+  display: none;
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+  mix-blend-mode: multiply;
+  will-change: left, top;
+}
+
+.cursor-ring {
+  display: none;
+  position: fixed;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.2px solid rgba(201, 169, 110, 0.55);
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%, -50%);
+  transition: width 0.35s cubic-bezier(0.22,1,0.36,1),
+              height 0.35s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.3s ease,
+              background 0.3s ease;
+  mix-blend-mode: multiply;
+  will-change: left, top;
+}
+
+.cursor-ring.is-hovering {
+  width: 52px;
+  height: 52px;
+  border-color: var(--gold);
+  background: rgba(201, 169, 110, 0.07);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring { display: none; }
+}
+
+
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-44px);
+  transition: opacity 0.88s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.88s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(44px);
+  transition: opacity 0.88s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.88s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.reveal-d1  { transition-delay: 0.08s; }
+.reveal-d2  { transition-delay: 0.16s; }
+.reveal-d3  { transition-delay: 0.24s; }
+.reveal-d4  { transition-delay: 0.34s; }
+.reveal-d5  { transition-delay: 0.44s; }
+
+
+.section-kicker,
+.awards-kicker,
+.chronicle-label,
+.books-copy .section-kicker,
+.chronicle-head .section-kicker {
+  font-family: 'EB Garamond', 'KoPubBatang', serif;
+  font-style: italic;
+  letter-spacing: 0.30em;
+  font-size: 0.74rem;
+  color: var(--gold) !important;
+  opacity: 1;
+}
+
+.award-index {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--gold) !important;
+}
+
+.fact-label {
+  color: var(--gold) !important;
+  letter-spacing: 0.14em;
+}
+
+
+
+.hero-scroll::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  margin: 10px auto 0;
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  38%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  62%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+
+
+.book-card-cover {
+  transition:
+    transform 0.12s ease,
+    filter 0.55s ease,
+    border-right-width 0.55s ease !important;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 1.5px;
+  height: 0.9em;
+  background: var(--gold);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: cursorBlink 0.9s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.book-panel-quote {
+  position: relative;
+  padding-left: 18px !important;
+  font-family: 'EB Garamond', 'KoPubBatang', serif !important;
+  font-style: italic;
+  font-size: 1.22rem !important;
+  color: rgba(44, 36, 22, 0.88) !important;
+}
+
+.book-panel-quote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+
+
+.chronicle-year {
+  position: relative;
+  overflow: visible;
+}
+
+.chronicle-year-watermark {
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: min(18vw, 200px);
+  font-weight: 700;
+  color: rgba(17, 17, 17, 0.025);
+  letter-spacing: -0.06em;
+  pointer-events: none;
+  z-index: 0;
+  white-space: nowrap;
+  line-height: 1;
+  user-select: none;
+  transition: opacity 0.6s ease;
+}
+
+.chronicle-flow {
+  position: relative;
+}
+
+.chronicle-flow::before {
+  content: "";
+  position: absolute;
+  left: 89px;
+  top: 30px;
+  bottom: 30px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(201, 169, 110, 0.22) 8%,
+    rgba(201, 169, 110, 0.22) 92%,
+    transparent 100%
+  );
+  z-index: 0;
+}
+
+#timeline-line {
+  position: absolute;
+  left: 89px;
+  top: 30px;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(180deg, var(--gold), rgba(201,169,110,0.3));
+  z-index: 1;
+  border-radius: 1px;
+  pointer-events: none;
+  transition: height 0.15s linear;
+}
+
+.chronicle-card {
+  transition:
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.42s ease !important;
+}
+
+.chronicle-label {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.18em;
+  color: var(--gold) !important;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 980px) {
+  .chronicle-flow::before,
+  #timeline-line { display: none; }
+
+  .chronicle-year-watermark { display: none; }
+}
+
+
+.top-banner {
+  background: var(--ink) !important;
+  letter-spacing: 0.03em;
+  font-size: 13px !important;
+}
+
+.top-banner a {
+  color: var(--gold-light) !important;
+}
+
+
+.info-intro-block,
+.info-facts,
+.info-awards-block {
+}
+
+.award-item {
+  transition: background 0.25s ease, transform 0.25s ease;
+  border-radius: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-left: -6px;
+}
+
+.award-item:hover {
+  background: rgba(201, 169, 110, 0.07);
+  transform: translateX(4px);
+}
+
+
+.site-footer a {
+  color: var(--gold) !important;
+  text-decoration-color: rgba(201,169,110,0.4);
+  transition: text-decoration-color 0.2s ease, opacity 0.2s ease;
+}
+
+.site-footer a:hover {
+  opacity: 0.75;
+  text-decoration-color: var(--gold);
+}
+
+
+.hero-caption p {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.14em;
+}
+
+
+.chronicle-more {
+  border: 1.5px dashed rgba(201,169,110,0.35) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(201,169,110,0.06),
+    rgba(201,169,110,0.02)
+  ) !important;
+}
+
+.chronicle-more .chronicle-link {
+  color: var(--gold) !important;
+  border-bottom-color: rgba(201,169,110,0.3) !important;
+}
+
+
+.chronicle-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.chronicle-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+
+.chronicle-link:hover::after {
+  width: 100%;
+}
+
+
+.book-panel-date {
+  color: var(--gold) !important;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+}
+
+.books-guide {
+  color: var(--gold) !important;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  letter-spacing: 0.06em;
+}

@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!--업데이트 예정-->
+<!--1. 방문자 수 표시-->
+<!--2. 작가님 소셜 링크 버튼 추가-->
+<!--3. 책 상세 정보에 작가 인터뷰나 리뷰 링크 추가-->
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>백은별 작가 소개 팬페이지</title>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.21/dist/lenis.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=20260408-2">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_enhance.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  <!--Normal SEO-->
+  <meta name="description" content="백은별 작가님의 포트폴리오 팬페이지입니다. 작가님의 작품과 프로필, 수상 경력 등을 확인해보세요.">
+  <meta name="keywords" content="백은별, 작가, 소설가, 시인, 시한부, 성장통, 기억하는 한 가장 오래, 윤슬의 바다, 청소년 소설, 청소년 시집">
+  <meta name="author" content="anion15">
+
+  <!--Open Graph SEO-->
+  <meta property="og:title" content="백은별 작가 소개 팬페이지">
+  <meta property="og:description" content="백은별 작가님의 포트폴리오 팬페이지입니다. 작가님의 작품과 프로필, 수상 경력 등을 확인해보세요.">
+  <meta property="og:site_name" content="백은별 작가 소개 팬페이지">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.eunbyeol.kr/">
+  <meta property="og:image" content="{{ url_for('static', filename='og-image.png') }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!--Twitter SEO-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="백은별 작가 소개 팬페이지">
+  <meta name="twitter:description" content="백은별 작가님의 포트폴리오 팬페이지입니다. 작가님의 작품과 프로필, 수상 경력 등을 확인해보세요.">
+  <meta name="twitter:image" content="{{ url_for('static', filename='og-image.png') }}">
+</head>
+<!-- 안녕하세요, 백은별 팬페이지를 방문해주셔서 감사합니다. -->
+<!-- 제작자: anion15 (Instagram: https://instagram.com/yxbh.rh0) (github: https://github.com/anion15) -->
+<script>
+  console.log(
+    "%c 안녕하세요. 백은별 팬페이지를 방문해주셔서 감사합니다. \n" +
+    "제작자: Anion15 (Instagram: https://instagram.com/yxbh.rh0) \n" +
+    "                (Github: https://github.com/anion15) \n" +
+    "                (Portfolio: https://dev.rederx.com/)" +
+    "\n\n이 페이지는 백은별 작가의 팬페이지로, 작가에 대한 정보와 작품을 소개하기 위해 만들어졌습니다. \n",
+    "color:#333;font-size:14px;line-height:1.6;background:#f0f0f0;padding:10px;font-weight:700;",
+    );
+</script>
+<body>
+<style>
+.top-banner {position: fixed;top: 0;left: 0;width: 100%;background: #111;color: #fff;text-align: center;padding: 10px 20px;font-size: 14px;z-index: 9999;}
+.top-banner a {color: #ffd700;margin-left: 8px;text-decoration: underline;}
+body {padding-top: 40px;}
+</style>
+<div class="top-banner">
+  <p>
+    Byeolpedia에 방문하여 백은별님에 대한 위키를 살펴보세요!
+    <a href="https://wiki.eunbyeol.kr/" target="_blank">바로가기
+      <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor">
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+      </svg>
+    </a>
+  </p>
+</div>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-inner" id="heroInner">
+        <div class="hero-title-anchor" id="heroTitleAnchor">
+          <span class="title-name">백은별</span>
+          <span class="title-role">작가</span>
+        </div>
+
+        <div class="hero-figure">
+          <img
+            id="heroProfile"
+            src="{{ url_for('static', filename='profile.png') }}"
+            alt="백은별 작가 프로필"
+          >
+        </div>
+
+        <div class="hero-caption">
+          <p>Writer Portfolio</p>
+          <div class="hero-scroll">SCROLL</div>
+        </div>
+      </div>
+    </section>
+
+<section class="info-section">
+  <div class="info-inner info-editorial">
+    <div class="info-top">
+      <div class="info-intro-block">
+        <p class="section-kicker">PROFILE</p>
+        <h2 class="section-title">백은별</h2>
+        <p class="info-intro-text">
+대한민국의 소설가, 시인. 소설 시한부가 흥행하며 청소년 작가로 이름을 알렸다.
+        </p>
+      </div>
+
+      <div class="info-facts">
+        <div class="fact-row">
+          <span class="fact-label">생일</span>
+          <span class="fact-value">2009년 6월 8일 (만 16세)</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">학력</span>
+          <div class="fact-value fact-stack">
+            <span>손곡초등학교 졸업</span>
+            <span>수지중학교 졸업</span>
+            <span>안양예술고등학교 중퇴</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">MBTI</span>
+          <span class="fact-value">INTJ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-awards-block">
+      <p class="awards-kicker">AWARDS</p>
+      <div class="awards-list">
+        <div class="award-item">
+          <span class="award-index">01</span>
+          <p class="award-text">2024년 용인시장 표창</p>
+        </div>
+        <div class="award-item">
+          <span class="award-index">02</span>
+          <p class="award-text">2025년 2024-2025 책씨앗 최고의 책</p>
+        </div>
+        <div class="award-item">
+          <span class="award-index">03</span>
+          <p class="award-text">2025년 경기도교육감 표창</p>
+        </div>
+        <div class="award-item">
+          <span class="award-index">04</span>
+          <p class="award-text">2025년 경기도지사 표창</p>
+        </div>
+        <div class="award-item">
+          <span class="award-index">05</span>
+          <p class="award-text">2026년 충청남도 유관순 횃불상</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="books-section" id="booksSection">
+  <div class="books-inner">
+    <div class="books-copy">
+      <p class="section-kicker">BOOKS</p>
+      <h2 class="section-title">작품</h2>
+      <p class="books-intro">
+        책장을 펼치듯, 백은별 작가의 작품들을 한자리에서 볼 수 있도록 구성했습니다.
+        표지를 선택하면 작품 정보가 함께 펼쳐집니다.
+      </p>
+    </div>
+    <p class="books-guide">책 표지를 클릭하여 자세히 보기</p>
+    <p class="books-shows"><br><br>&nbsp;<br></p>
+
+    <div class="books-stage is-book-0" id="booksStage">
+      <div class="books-fan" id="booksFan">
+        <button
+          class="book-card is-active"
+          type="button"
+          data-book="0"
+          data-title="시한부"
+          data-subtitle="장편소설"
+          data-date="2024.01.23"
+          data-desc="중학교 2학년 주인공 수아가 극심한 우울과 자해 충동 속에 크리스마스에 죽겠다는 자살 계획을 세우며 스스로 '시한부' 삶을 택하는 이야기."
+          data-meta="대표작 · 청소년 소설"
+          data-quote="학교생활에서 겪는 혼란과 우울을 감추지 않고 드러내며, 청소년의 자살 문제를 사회적 문제로 공론화한다."
+        >
+          <span class="book-card-shadow"></span>
+          <span class="book-card-cover">
+            <img src="{{ url_for('static', filename='book1.jpg') }}" alt="시한부 표지">
+          </span>
+        </button>
+
+        <button
+          class="book-card"
+          type="button"
+          data-book="1"
+          data-title="성장통"
+          data-subtitle="시집"
+          data-date="2025.06.04"
+          data-desc="100편 이상의 시들로 가득찬 청소년 시집."
+          data-meta="청소년 시집"
+          data-quote="“세상이 널 지켜주지 못해도
+                      나만은 시샘하지 않고 예뻐할테니
+                      내 앞에서 마음껏 울어주어라”"
+        >
+          <span class="book-card-shadow"></span>
+          <span class="book-card-cover">
+            <img src="{{ url_for('static', filename='book2.jpg') }}" alt="성장통 표지">
+          </span>
+        </button>
+
+        <button
+          class="book-card"
+          type="button"
+          data-book="2"
+          data-title="기억하는 한 가장 오래"
+          data-subtitle="시집"
+          data-date="2024.12.20"
+          data-desc="깊이 있는 시선과 섬세한 감성이 담긴 시선집."
+          data-meta="청소년 시집"
+          data-quote="“자꾸만 흩어지려는 순간을 붙잡을 수 없으니”
+                      한낱 순간이 내 곁을 지켜주고 잠식될 때까지
+                      기억하고, 간직하려 한다."
+        >
+          <span class="book-card-shadow"></span>
+          <span class="book-card-cover">
+            <img src="{{ url_for('static', filename='book3.jpg') }}" alt="기억하는 한 가장 오래 표지">
+          </span>
+        </button>
+
+        <button
+          class="book-card"
+          type="button"
+          data-book="3"
+          data-title="윤슬의 바다"
+          data-subtitle="중편소설"
+          data-date="2025.06.08"
+          data-desc="시간을 멈추는 초능력을 숨긴 '윤슬'과 초능력자 사냥꾼 부모를 둔 '바다'가 사회의 배척 속에서 사랑을 나누며 도망치는 이야기."
+          data-meta="로맨스 · 판타지 · 청소년 소설"
+          data-quote="“선배, 우리 이름부터가 운명 같지 않아요?” “애냐. 운명 같은 걸 믿게.”"
+        >
+          <span class="book-card-shadow"></span>
+          <span class="book-card-cover">
+            <img src="{{ url_for('static', filename='book4.jpg') }}" alt="윤슬의 바다 표지">
+          </span>
+        </button>
+      </div>
+
+      <div class="book-panel" id="bookPanel" aria-live="polite">
+        <p class="book-panel-kicker" id="bookPanelSubtitle"></p>
+        <h3 class="book-panel-title" id="bookPanelTitle"></h3>
+
+        <div class="book-panel-meta-wrap">
+          <span class="book-panel-date" id="bookPanelDate"></span>
+          <span class="book-panel-meta" id="bookPanelMeta"></span>
+        </div>
+
+        <p class="book-panel-desc" id="bookPanelDesc">
+        </p>
+
+        <p class="book-panel-quote" id="bookPanelQuote">
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+  </div>
+<!-- <section class="playlist-section" id="playlistSection">
+  <div class="playlist-inner">
+    <div class="playlist-head">
+      <p class="playlist-eyebrow">PLAYLIST NOTE</p>
+      <div class="playlist-title-row">
+        <div>
+          <h2 class="playlist-title">백은별의 Playlist</h2>
+          <p class="playlist-subcopy">그날그날 마음이 머물렀던 노래들</p>
+        </div>
+        <p class="playlist-intro">
+          2025년 1월 13일부터 인스타그램 공지 채널 ‘반짝반짝 작은별’에서 공유된
+          오늘의 노래 추천입니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="playlist-stage" id="playlistStage">
+      <div class="playlist-focus-wrap">
+        <div class="playlist-backdrop">
+          <img id="playlistBackdrop" src="" alt="">
+        </div>
+
+        <div class="playlist-focus">
+          <a
+            class="playlist-cover-link"
+            id="playlistCoverLink"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            aria-label="Apple Music에서 곡 보기"
+          >
+            <img id="playlistCover" src="" alt="노래 표지">
+          </a>
+
+          <div class="playlist-info-card">
+            <p class="playlist-label" id="playlistItemType">TRACK</p>
+            <h3 class="playlist-song" id="playlistSongName">노래를 불러오는 중</h3>
+
+            <div class="playlist-artist-row">
+              <a
+                id="playlistArtist"
+                class="playlist-artist"
+                href="#"
+                target="_blank"
+                rel="noopener"
+              >
+                아티스트
+              </a>
+            </div>
+
+            <div class="playlist-meta">
+              <span id="playlistDuration">-</span>
+              <span class="playlist-meta-dot"></span>
+              <span id="playlistReleaseDate">-</span>
+              <span class="playlist-meta-dot"></span>
+              <span id="playlistPlatform">Apple Music</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="playlist-side">
+        <div class="playlist-list-head">
+          <p class="playlist-list-label">선곡 목록</p>
+          <p class="playlist-list-count" id="playlistCount">0곡</p>
+        </div>
+        <div class="playlist-list" id="playlistList"></div>
+      </aside>
+    </div>
+  </div>
+</section> -->
+<section class="chronicle-section" id="timelineSection">
+  <div class="chronicle-inner">
+    <div class="chronicle-head">
+      <p class="section-kicker">CHRONICLE</p>
+      <h2 class="section-title">백은별 연대기</h2>
+      <p class="chronicle-intro">
+        작품과 수상, 그리고 이름이 알려지기까지의 시간
+      </p>
+    </div>
+
+    <div class="chronicle-flow">
+      <article class="chronicle-row">
+        <div class="chronicle-year">2009</div>
+        <div class="chronicle-events">
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">탄생</p>
+            <h3 class="chronicle-title">백은별 출생</h3>
+            <p class="chronicle-desc">
+              2009년 6월 8일 경기도 용인시 수지구에서 태어났다.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="chronicle-row">
+        <div class="chronicle-year">2022</div>
+        <div class="chronicle-events">
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">학교 활동</p>
+            <h3 class="chronicle-title">12월 14일 수지중학교 부회장 당선</h3>
+            <p class="chronicle-desc">
+              수지중학교 부회장에 당선되었다.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="chronicle-row">
+        <div class="chronicle-year">2023</div>
+        <div class="chronicle-events">
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">수상</p>
+            <h3 class="chronicle-title">5월 16일 용인시교원총연합회 표창장 수상</h3>
+            <p class="chronicle-desc">
+              용인시교원총연합회 표창장을 수상했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-sm offset-down">
+            <p class="chronicle-label">수상</p>
+            <h3 class="chronicle-title">7월 12일 수지중학교 예능대회 장려상(3위) 수상</h3>
+            <p class="chronicle-desc">
+              수지중학교 예능대회에서 장려상을 수상했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">사업</p>
+            <h3 class="chronicle-title">9월 1일 씨엔 창립</h3>
+            <p class="chronicle-desc">
+              도매 및 소매업, 전자상거래 소매업으로 신고하며 씨엔을 창립했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg lift-up">
+            <p class="chronicle-label">펀딩</p>
+            <h3 class="chronicle-title">11월 20일 와디즈 『시한부』 펀딩 성공적 종료</h3>
+            <p class="chronicle-desc">
+              와디즈 『시한부』 펀딩이 2321%를 달성하며 성공적으로 종료되었고,
+              해당 펀딩에는 279명의 서포터가 참여했다.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="chronicle-row">
+        <div class="chronicle-year">2024</div>
+        <div class="chronicle-events">
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">전환점</p>
+            <h3 class="chronicle-title">데뷔 시작</h3>
+            <p class="chronicle-desc">
+              본격적인 작품 활동과 함께 데뷔의 출발점을 열었다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-sm offset-down">
+            <p class="chronicle-label">수상</p>
+            <h3 class="chronicle-title">용인시장 표창</h3>
+            <p class="chronicle-desc">
+              용인시장 표창을 수상했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">개인</p>
+            <h3 class="chronicle-title">드럼 배우기 시작</h3>
+            <p class="chronicle-desc">
+              드럼을 배우기 시작했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">출간</p>
+            <h3 class="chronicle-title">1월 23일 『시한부』 출간</h3>
+            <p class="chronicle-desc">
+              『시한부』를 출간하며 이름을 알리기 시작했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">3월 2일 강연회</h3>
+            <p class="chronicle-desc">
+              조성은스피치학원에서 강연회를 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223369609362" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">출간</p>
+            <h3 class="chronicle-title">6월 4일 『성장통』 출간</h3>
+            <p class="chronicle-desc">
+              『성장통』을 출간했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-sm offset-down">
+            <p class="chronicle-label">개인</p>
+            <h3 class="chronicle-title">6월 MBTI를 ENFJ라고 밝힘</h3>
+            <p class="chronicle-desc">
+              자신의 MBTI가 ENFJ라고 밝혔다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">6월 30일 저자사인회</h3>
+            <p class="chronicle-desc">
+              서울국제도서전에서 저자사인회를 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223532858119" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">사업</p>
+            <h3 class="chronicle-title">7월 1일 씨엔, 간이과세자로 전환</h3>
+            <p class="chronicle-desc">
+              씨엔이 일반과세자에서 간이과세자로 전환되었다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">개인</p>
+            <h3 class="chronicle-title">7월 23일 은별 블로그 첫 글 등록</h3>
+            <p class="chronicle-desc">
+              은별 블로그에 첫 글을 등록했다.
+            </p>
+            <a class="chronicle-link" href="https://blog.naver.com/lueyb_/223522429024" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">7월 27일 작가지망생 대상 강연회</h3>
+            <p class="chronicle-desc">
+              교보문고 광화문점에서 작가지망생 대상 강연회를 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223532871719" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">8월 10일 강연회</h3>
+            <p class="chronicle-desc">
+              포천면암도서관에서 강연회를 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223571398754" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-sm lift-up">
+            <p class="chronicle-label">개인</p>
+            <h3 class="chronicle-title">9월 MBTI를 INFJ라고 번복</h3>
+            <p class="chronicle-desc">
+              자신의 MBTI를 INFJ라고 다시 밝혔다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">9월 8일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              전북혁신문고, 완주군립도서관 후원으로 작가와의 만남을 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223608047425" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">9월 12일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              남춘천여자중학교에서 작가와의 만남을 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223608048961" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">10월 9일 북콘서트</h3>
+            <p class="chronicle-desc">
+              현대백화점 미아점 문화홀에서 북콘서트를 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">10월 12일 연합뉴스TV 유튜브 ‘젊은 피,디’ 출연</h3>
+            <p class="chronicle-desc">
+              연합뉴스TV 유튜브 ‘젊은 피,디’에 출연했으며,
+              영상은 110만 회 이상의 조회수를 기록했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/watch?v=nByXWxeyDqk" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">학업</p>
+            <h3 class="chronicle-title">10월 29일 안양예술고등학교 문예창작과 합격</h3>
+            <p class="chronicle-desc">
+              안양예술고등학교 문예창작과에 합격했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">11월 22일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              함양 수동중학교에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">11월 23일 키즐 kizzle 출연</h3>
+            <p class="chronicle-desc">
+              키즐 kizzle에 출연했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/watch?v=5zGVUaDObBk" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">11월 23일 작가 사인회</h3>
+            <p class="chronicle-desc">
+              교보문고 부산점에서 작가 사인회를 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223692918352" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">12월 15일 북콘서트</h3>
+            <p class="chronicle-desc">
+              흰물결아트센터에서 북콘서트를 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223697065983" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">12월 17일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              인제 원통초등학교에서 작가와의 만남을 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223697076202" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">출간</p>
+            <h3 class="chronicle-title">12월 20일 『기억하는 한 가장 오래』 출간</h3>
+            <p class="chronicle-desc">
+              『기억하는 한 가장 오래』를 출간했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">12월 26일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              전주 우림중학교에서 작가와의 만남을 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223726964312" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="chronicle-row">
+        <div class="chronicle-year">2025</div>
+        <div class="chronicle-events">
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">수상</p>
+            <h3 class="chronicle-title">경기도교육감 표창</h3>
+            <p class="chronicle-desc">
+              경기도교육감 표창을 수상했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-sm offset-down">
+            <p class="chronicle-label">수상</p>
+            <h3 class="chronicle-title">경기도지사 표창</h3>
+            <p class="chronicle-desc">
+              경기도지사 표창을 수상했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg lift-up">
+            <p class="chronicle-label">수상</p>
+            <h3 class="chronicle-title">1월 17일 2024-2025 책씨앗 최고의 책 수상</h3>
+            <p class="chronicle-desc">
+              『시한부』가 2024-2025 책씨앗 최고의 책으로 선정되었다.
+            </p>
+            <a class="chronicle-link" href="https://www.imaeil.com/page/view/2025042511520613488" target="_blank" rel="noopener">기사 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">기념</p>
+            <h3 class="chronicle-title">1월 23일 『시한부』 출간 및 데뷔 1주년</h3>
+            <p class="chronicle-desc">
+              『시한부』 출간 1주년이자 데뷔 1주년을 맞이했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg offset-down">
+            <p class="chronicle-label">해외 출간</p>
+            <h3 class="chronicle-title">2월 1일 대만 번역서 『死限來臨前請抓住我』 출간</h3>
+            <p class="chronicle-desc">
+              『시한부』의 대만 번역서가 출간되었다.
+            </p>
+            <a class="chronicle-link" href="https://www.books.com.tw/products/0011011674" target="_blank" rel="noopener">도서 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">계획 발표</p>
+            <h3 class="chronicle-title">3월 6일 『죽음의 색깔』 출간 계획 발표</h3>
+            <p class="chronicle-desc">
+              다양한 작가들과 함께 『죽음의 색깔』을 출간하려는 계획을 발표했다.
+            </p>
+            <a class="chronicle-link" href="https://www.tiktok.com/@lueyb_/video/7478632221910306055" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">4월 26일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              파주 교하도서관에서 작가와의 만남을 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223848085811" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">5월 23일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              의정부시 청소년재단에서 작가와의 만남을 진행했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223887754844" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+          
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">출간</p>
+            <h3 class="chronicle-title">6월 8일 『윤슬의 바다』 출간</h3>
+            <p class="chronicle-desc">
+              『윤슬의 바다』를 출간했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">행사 / 기부</p>
+            <h3 class="chronicle-title">6월 8일 북콘서트에서 1천만 원 및 『시한부』 1천 권 기부</h3>
+            <p class="chronicle-desc">
+              반년 만에 북콘서트를 열었고, 현금 1천만 원과 『시한부』 책 1천 권을 기부했다.
+            </p>
+            <a class="chronicle-link" href="https://m.blog.naver.com/cienbaek/223887762590" target="_blank" rel="noopener">블로그 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">7월 5일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              안양 평촌도서관에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">7월 13일 작가 팬사인회</h3>
+            <p class="chronicle-desc">
+              교보문고 광화문점에서 작가 팬사인회를 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg offset-down">
+            <p class="chronicle-label">기부</p>
+            <h3 class="chronicle-title">7월 17일 아너 소사이어티 가입 및 1억 원 기부 약정</h3>
+            <p class="chronicle-desc">
+              전국 3700호, 서울 454호 최연소 아너로 가입하며
+              1억 원 기부를 약정했다.
+            </p>
+            <a class="chronicle-link" href="https://www.hankookilbo.com/news/article/A2025071817570001776?type=AB6" target="_blank" rel="noopener">기사 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">7월 29일 스브스뉴스 유튜브 출연</h3>
+            <p class="chronicle-desc">
+              스브스뉴스 유튜브에 출연했고, 영상은 60만 회 이상의 조회수를 기록했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/watch?v=VtO9L3UypD0" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-sm lift-up">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">8월 2일 SBS뉴스 유튜브 출연</h3>
+            <p class="chronicle-desc">
+              SBS뉴스 유튜브에 출연했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/watch?v=TqUhav_VRfw" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">8월 2일 책과삶 유튜브 출연</h3>
+            <p class="chronicle-desc">
+              책과삶 유튜브에 출연했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/watch?v=-fLPwDa40M0" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">8월 16일 YTN 유튜브 ‘컬처인사이드’ 출연</h3>
+            <p class="chronicle-desc">
+              YTN 유튜브 ‘컬처인사이드’에 출연했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/watch?v=tBVDvI96f7U" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">해외 출간</p>
+            <h3 class="chronicle-title">9월 4일 인도네시아 번역서 『Limited Time』 출간</h3>
+            <p class="chronicle-desc">
+              『시한부』의 인도네시아 번역서가 출간되었다.
+            </p>
+            <a class="chronicle-link" href="https://www.gramedia.com/products/limited-time" target="_blank" rel="noopener">도서 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">9월 12일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              마포출판문화진흥센터에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">9월 13일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              인천북부교육지원청에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">9월 16일 북토크</h3>
+            <p class="chronicle-desc">
+              한국문화예술위원회에서 북토크를 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">9월 18일 호영s 유튜브 출연</h3>
+            <p class="chronicle-desc">
+              호영s 유튜브에 출연했고, 영상은 220만 회 이상의 조회수를 기록했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/shorts/U4mNECDoojE" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">9월 19일 기조연설</h3>
+            <p class="chronicle-desc">
+              [청년·통일 미래 대화]에서 기조연설을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">방송 출연</p>
+            <h3 class="chronicle-title">9월 20일 경인일보 유튜브 출연</h3>
+            <p class="chronicle-desc">
+              경인일보 유튜브에 출연했다.
+            </p>
+            <a class="chronicle-link" href="https://www.youtube.com/watch?v=SuUSUf4JCZo" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">9월 26일 시민헌장 낭독</h3>
+            <p class="chronicle-desc">
+              [안양시민의날기념식]에서 시민헌장을 낭독했다.
+            </p>
+
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">광고 / 모델</p>
+            <h3 class="chronicle-title">9월 설탭 모델 발탁</h3>
+            <p class="chronicle-desc">
+              설탭 모델로 발탁되었다.
+            </p>
+            <a class="chronicle-link" href="https://zdnet.co.kr/view/?no=20250930203222" target="_blank" rel="noopener">기사 보기</a>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">10월 23일 국제컨퍼런스 초청연사</h3>
+            <p class="chronicle-desc">
+              경기도서관 국제컨퍼런스에 초청연사로 참여했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg lift-up">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">10월 25일 경기도서관 개관 기념 북토크</h3>
+            <p class="chronicle-desc">
+              경기도서관 개관 기념 북토크를 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">11월 1일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              안산 감골도서관에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">12월 10일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              춘천고등학교에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">12월 13일 북토크</h3>
+            <p class="chronicle-desc">
+              부산 국제아동도서전-벡스코에서 북토크를 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">12월 24일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              대전 변동중학교에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">12월 30일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              창문여자중학교에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <article class="chronicle-row">
+        <div class="chronicle-year">2026</div>
+        <div class="chronicle-events">
+          <div class="chronicle-card size-sm">
+            <p class="chronicle-label">방송</p>
+            <h3 class="chronicle-title">1월 3일 치지직 첫 방송</h3>
+            <p class="chronicle-desc">
+              치지직에서 첫 방송을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">1월 10일 북토크</h3>
+            <p class="chronicle-desc">
+              아모레퍼시픽에서 북토크를 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">SNS</p>
+            <h3 class="chronicle-title">1월 19일 인스타그램 ID 변경</h3>
+            <p class="chronicle-desc">
+              인스타그램 ID를 writer_byeul에서 cien_byeul로 변경했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">2월 8일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              여주 기적의도서관에서 작가와의 만남을 진행했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">방송</p>
+            <h3 class="chronicle-title">2월 27일 치지직 다시보기 업로드 시작</h3>
+            <p class="chronicle-desc">
+              치지직 다시보기를 업로드하기 시작했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">콘텐츠</p>
+            <h3 class="chronicle-title">3월 7일 책 추천 영상 업로드 시작</h3>
+            <p class="chronicle-desc">
+              책 추천 영상을 올리기 시작했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">방송</p>
+            <h3 class="chronicle-title">3월 16일 치지직 라이브에서 중퇴 사실 공개</h3>
+            <p class="chronicle-desc">
+              치지직 라이브 방송에서 고등학교 중퇴 사실을 밝혔다.
+            </p>
+            <a class="chronicle-link" href="https://chzzk.naver.com/video/12260019" target="_blank" rel="noopener">영상 보기</a>
+          </div>
+
+          <div class="chronicle-card size-lg offset-down">
+            <p class="chronicle-label">수상</p>
+            <h3 class="chronicle-title">4월 1일 제25회 충청남도 유관순 횃불상 수상</h3>
+            <p class="chronicle-desc">
+              제25회 충청남도 유관순 횃불상을 수상했다.
+            </p>
+            <a class="chronicle-link" href="https://www.chungnam.go.kr/cnportal/media/article/view.do?articleNo=MD0003351067&menuNo=500190&pageIndex=" target="_blank" rel="noopener">기사 보기</a>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">행사</p>
+            <h3 class="chronicle-title">4월 23일 독서국민 100인 선언식</h3>
+            <p class="chronicle-desc">
+              광화문에서 열린 ‘독서국민 100인 선언식’에 참여했다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">5월 9일 작가 팬사인회</h3>
+            <p class="chronicle-desc">
+              교보문고 광화문점에서 작가 팬사인회가 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">5월 16일 작가 팬사인회</h3>
+            <p class="chronicle-desc">
+              교보문고 대구점에서 작가 팬사인회가 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">5월 17일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              세종교육문화원에서 작가와의 만남이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">5월 22일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              강원 화천중학교에서 작가와의 만남이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">7월 13일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              원주 태장중학교에서 작가와의 만남이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">7월 21일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              위례 한빛중학교에서 작가와의 만남이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">7월 24일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              남양주시 진접도서관에서 작가와의 만남이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">8월 1일 북토크</h3>
+            <p class="chronicle-desc">
+              서울국제정원박람회 영풍문고 북토크가 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md lift-up">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">8월 22일 초청강연</h3>
+            <p class="chronicle-desc">
+              월간사람책 행사의 초청강연이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">9월 12일 초청강연</h3>
+            <p class="chronicle-desc">
+              낙동도서대전에서 초청강연이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-md offset-down">
+            <p class="chronicle-label">예정</p>
+            <h3 class="chronicle-title">9월 19일 작가와의 만남</h3>
+            <p class="chronicle-desc">
+              영등포구립 선유도서관에서 작가와의 만남이 예정되어 있다.
+            </p>
+          </div>
+
+          <div class="chronicle-card size-lg chronicle-more">
+            <p class="chronicle-label">더보기</p>
+            <h3 class="chronicle-title">더 자세한 연대기 보기</h3>
+            <p class="chronicle-desc">
+              더 자세한 백은별님의 연대기를 확인하려면,<br>
+              Byeolpedia의 ‘백은별/연혁’ 문서를 확인해보세요!
+            </p>
+            <a href="https://wiki.eunbyeol.kr/w/백은별/연혁" target="_blank" class="chronicle-link">
+              연혁 문서 보러가기 →
+            </a>
+          </div>
+          
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!--footer-->
+<footer class="site-footer">
+  <p class="footer-text">
+    본 <strong>www.eunbyeol.kr</strong>은 백은별 작가님의 요청에 따라 제작된 공식 페이지가 아닌,
+    한 독자가 백은별 작가님과 작품을 소개하기 위해 만든 <strong>비상업적 팬 페이지</strong>입니다.
+  </p>
+
+  <p class="footer-text">
+    사이트 내에 사용된 콘텐츠는 백은별 작가님 관련 공식 공개 자료를 바탕으로 구성되었으며,
+    관련 저작권 및 권리는 모두 백은별 작가님에게 있습니다.
+    본 페이지는 작가님과 작품을 알리기 위한 취지로 제작되었으며,
+    상업적 이용 및 무단 복제·배포는 금지됩니다.
+  </p>
+
+  <p class="copyright-info">
+    본 사이트에 사용된 서체는 <strong>KoPub</strong>이며, 사전에 서체 사용 등록을 완료한 상태입니다.
+    서체 사용 정책 변경 또는 권리자의 요청이 있을 경우, 이에 따라 즉시 수정 또는 사용 중단 조치를 진행할 수 있습니다.
+  </p>
+
+  <p class="copyright-info">
+    또한 백은별 작가님 또는 권리자의 요청이 있을 경우, 해당 페이지의 호스팅은 즉시 중단됩니다.
+    관련 문의는 <a href="mailto:juwony27@gmail.com">juwony27@gmail.com</a>으로 보내주시면 빠르게 확인하겠습니다.
+  </p>
+
+  <p class="creator-info">
+    제작자: Anion15 (Instagram: <a href="https://instagram.com/yxbh.rh0" target="_blank" rel="noopener">https://instagram.com/yxbh.rh0</a>, GitHub: <a href="https://github.com/Anion15" target="_blank" rel="noopener">https://github.com/Anion15</a>)
+  </p>
+</footer>
+
+<!--js 파일 로드-->
+  <script src="https://unpkg.com/lenis@1.3.21/dist/lenis.min.js"></script>
+  <script src="{{ url_for('static', filename='hero.js') }}"></script>
+  <script src="{{ url_for('static', filename='book.js') }}"></script>
+  <!-- <script src="{{ url_for('static', filename='playlist.js') }}?v=20260408-3"></script> -->
+  <script src="{{ url_for('static', filename='visit.js') }}"></script>
+  <script src="{{ url_for('static', filename='enhance.js') }}?v=20260408-4"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
