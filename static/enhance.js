@@ -4,6 +4,20 @@ function initLoader() {
   const loader = document.getElementById('page-loader');
   if (!loader) return;
 
+  // 로더 시작 - 스크롤 차단
+  document.documentElement.style.overflow = 'hidden';
+  
+  // Lock body position to prevent any pre-existing scroll from applying
+  let _lockedScrollY = 0;
+  try {
+    _lockedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${_lockedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  } catch (e) {}
+
   const triggerHeroAnimation = () => {
     const heroTitleAnchor = document.getElementById('heroTitleAnchor');
     const heroFigure = document.querySelector('.hero-figure');
@@ -51,10 +65,68 @@ function initLoader() {
     }
   };
 
+  // Scroll blocking helpers: prevent wheel/touch/key while loader active
+  let _scrollBlockerActive = false;
+  const _preventScroll = (e) => { e.preventDefault(); return false; };
+  const _preventKey = (e) => {
+    const code = e.key || e.keyIdentifier || e.keyCode;
+    const blocked = [32,33,34,35,36,37,38,39,40];
+    if (typeof code === 'string') {
+      if ([' ', 'PageDown', 'PageUp', 'End', 'Home', 'ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(code)) {
+        e.preventDefault();
+        return false;
+      }
+    } else if (typeof code === 'number') {
+      if (blocked.indexOf(code) !== -1) {
+        e.preventDefault();
+        return false;
+      }
+    }
+  };
+
+  function enableScrollBlockers() {
+    if (_scrollBlockerActive) return;
+    _scrollBlockerActive = true;
+    window.addEventListener('wheel', _preventScroll, { passive: false });
+    window.addEventListener('touchmove', _preventScroll, { passive: false });
+    window.addEventListener('keydown', _preventKey, { passive: false });
+  }
+
+  function disableScrollBlockers() {
+    if (!_scrollBlockerActive) return;
+    _scrollBlockerActive = false;
+    window.removeEventListener('wheel', _preventScroll, { passive: false });
+    window.removeEventListener('touchmove', _preventScroll, { passive: false });
+    window.removeEventListener('keydown', _preventKey, { passive: false });
+  }
+
+  // enable blockers after helpers are defined
+  enableScrollBlockers();
+
   const hide = () => {
     setTimeout(() => {
       loader.classList.add('is-hidden');
-      setTimeout(triggerHeroAnimation, 500);
+      // 로더 종료 - 스크롤 2초간 차단 후 허용
+      // (초기 로더에서 이미 차단되어 있으므로 그대로 유지)
+      document.documentElement.style.overflow = 'hidden';
+      setTimeout(() => {
+        // 2초 경과 확인 후 고정된 바디 위치 해제하고 원래 스크롤 위치 복원
+        try {
+          // restore body positioning
+          document.body.style.position = '';
+          const topVal = document.body.style.top || '';
+          document.body.style.top = '';
+          document.body.style.left = '';
+          document.body.style.right = '';
+          document.body.style.width = '';
+          // restore scroll
+          const restoreY = _lockedScrollY || 0;
+          window.scrollTo(0, restoreY);
+        } catch (e) {}
+        document.documentElement.style.overflow = '';
+        disableScrollBlockers();
+        triggerHeroAnimation();
+      }, 2000);
     }, 3200);
   };
 
